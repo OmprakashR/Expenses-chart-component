@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,700&display=swap');
+
+
+:root {
+
+    --Soft-red: hsl(10, 79%, 65%);
+    --Cyan: hsl(186, 34%, 60%);
+
+    --Dark-brown: hsl(25, 47%, 15%);
+    --Medim-brown: hsl(28, 10%, 53%);
+    --Cream: hsl(27, 66%, 92%);
+    --Very-pale-orange: hsl(33, 100%, 98%);
+}
+
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 18px;
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--Very-pale-orange);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.card {
+    width: 500px;
+    max-width: 500px;
+}
+
+.card-info {
+    color: #fff;
+}
+
+.card-info h1 {
+    font-weight: 400;
+}
+
+.card-section-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    width: 100%;
+    border-radius: 20px;
+    background-color: var(--Soft-red);
+}
+
+.value-add {
+    background-color: var(--Soft-red);
+    border-radius: 10px;
+    width: 50px;
+}
+
+.info-card {
+    margin-top: 0em;
+    text-align: center;
+    align-items: end;
+    display: flex;
+    height: 300px;
+    justify-content: space-between; border-bottom: 1px solid var( --Medim-brown) ; padding-bottom:2em ;
+}
+
+.card-content {
+    margin-top: 1em;
+    background-color: #fff;  transition: 1s all;
+    padding: 1.5em;
+    border-radius: 20px;
+}
+
+.info-card>div {
+    height: 100%; cursor: grab;
+    display: flex;
+    flex-direction: column;
+    align-items: center; transition: 0.6s all;
+    justify-content: flex-end;
+}
+
+.tooltipvalue {  transition: 1s all;
+    box-sizing: border-box;
+    width: 100%; display: none;
+    border-radius: 5px;
+    background-color: var(--Dark-brown);
+    padding: 5px;
+    font-size: 15px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+.bg-blue{
+    background-color: var(--Cyan);
+}
+
+.info-card div:hover .tooltipvalue{
+display: block; cursor: grab; transition: 1s all;
+}
+
+
+
+.info-card div:hover .value-add {
+ opacity: 0.8;  transition: 1s all;
+    }
+    .text-sm{
+        font-size: 2rem;
+    }
