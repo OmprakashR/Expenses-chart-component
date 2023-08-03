@@ -32,7 +32,7 @@ body {
 }
 
 .card {
-    width: 500px;
+
     max-width: 500px;
 }
 
@@ -65,28 +65,40 @@ body {
     text-align: center;
     align-items: end;
     display: flex;
+    gap: 10px;
     height: 300px;
-    justify-content: space-between; border-bottom: 1px solid var( --Medim-brown) ; padding-bottom:2em ;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--Medim-brown);
+    padding-bottom: 2em;
+}
+
+.info-card div:nth-child(3) .value-add {
+    background-color: var(--Cyan);
 }
 
 .card-content {
     margin-top: 1em;
-    background-color: #fff;  transition: 1s all;
+    background-color: #fff;
+    transition: 1s all;
     padding: 1.5em;
     border-radius: 20px;
 }
 
 .info-card>div {
-    height: 100%; cursor: grab;
+    height: 100%;
+    cursor: grab;
     display: flex;
     flex-direction: column;
-    align-items: center; transition: 0.6s all;
+    align-items: center;
+    transition: 0.6s all;
     justify-content: flex-end;
 }
 
-.tooltipvalue {  transition: 1s all;
+.tooltipvalue {
+    transition: 1s all;
     box-sizing: border-box;
-    width: 100%; display: none;
+    width: 100%;
+    display: none;
     border-radius: 5px;
     background-color: var(--Dark-brown);
     padding: 5px;
@@ -94,19 +106,67 @@ body {
     color: #fff;
     margin-bottom: 10px;
 }
-.bg-blue{
-    background-color: var(--Cyan);
-}
 
-.info-card div:hover .tooltipvalue{
-display: block; cursor: grab; transition: 1s all;
+
+.info-card div:hover .tooltipvalue {
+    display: block;
+    cursor: grab;
+    transition: 1s all;
 }
 
 
 
 .info-card div:hover .value-add {
- opacity: 0.8;  transition: 1s all;
+    opacity: 0.6;
+    transition: 1s all;
+}
+
+.text-sm {
+    font-size: 2rem;
+}
+
+.small-text {
+    font-weight: 400;
+    font-size: 0.9em;
+    color: var(--Medim-brown);
+}
+
+.card-footer {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+h2,
+h4 {
+    color: var(--Dark-brown);
+}
+
+.text-end {
+    text-align: right;
+}
+
+.big-font {
+    font-size: 2.3em;
+}
+
+.last-div {
+    align-self: flex-end;
+}
+
+
+@media (max-width: 768px) {
+
+    .card {
+
+        max-width: 500px;
     }
-    .text-sm{
-        font-size: 2rem;
+
+    .value-add {
+        width: 30px;
     }
+
+    .tooltipvalue {
+        font-size: 8px;
+    }
+}

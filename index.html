@@ -8,156 +8,62 @@
   <meta name="description" content="Frontend Mentor | Expenses chart component">
   </meta>
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-
   <title>Frontend Mentor | Expenses chart component</title>
   <link href="style.css" rel="stylesheet">
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-
 </head>
 
 <body>
-
-
-
   <main class="card">
-
     <div class="card-section-top">
-
       <div class="card-info">
         <p> My balance</p>
         <h1 class="text-sm">$921.48</h1>
-
-
       </div>
       <div class="logo-img">
-        <img src="./images/logo.svg" alt="Expenses chart logo">
+        <img src="./images/logo.svg"  width="72" height="48" alt="Expenses chart logo">
       </div>
-
-
-
-
     </div>
-
-
     <div class="card-content">
       <h2> Spending - Last 7 days</h2>
-
-
-
-
-      <div class="info-card">
-
-
+      <div class="info-card" id="infoCard"></div>
+      <div class="card-footer">
         <div>
+          <span class="small-text"> Total this month
+          </span>
+          <h2 class="big-font"> $478.33
+          </h2>
 
-          <div class="tooltipvalue"></div>
-          <div class="value value-add">
-
-          </div>
-          <div class="days">
-
-          </div>
-
-        </div>
- 
-        <div>
-          <div class="tooltipvalue"></div>
-          <div class="all-value-tooltip">
-
-          </div>
-          <div class="value-add">
-
-          </div>
-          <div class="days">
-
-          </div>
-
-        </div>
-
- 
-
-        <div>
-          <div class="tooltipvalue"></div>
-          <div class="value-add bg-blue">
-
-          </div>
-          <div class="days">
-
-          </div>
-
-        </div>
-
-
-
-
-        <div>
-          <div class="tooltipvalue"></div>
-          <div class="value-add">
-
-          </div>
-          <div class="days">
-
-          </div>
-
-        </div>
-
-
-
-
-
-        <div>
-          <div class="tooltipvalue"></div>
-          <div class="value-add">
-
-          </div>
-          <div class="days">
-
-          </div>
-
-        </div>
-
-
-
-        <div>
-          <div class="tooltipvalue"></div>
-          <div class="value-add">
-
-          </div>
-          <div class="days">
-
-          </div>
-
-        </div>
-
-
-
-        <div>
-          <div class="tooltipvalue"></div>
-          <div class="value-add">
-
-          </div>
-          <div class="days">
-
-          </div>
 
 
         </div>
+        <div class="last-div">
 
+          <h4 class="text-end">+2.4%
+          </h4>
+          <span class="small-text "> from last month
+          </span>
+
+
+        </div>
 
       </div>
+    </div>
 
-
-
-
-      <div>
-
-      </div>
   </main>
-
-
-
-
   <script>
+
+    // Function to generate the template for each day's data
+    function generateDayTemplate(dayIndex) {
+      return `
+    <div>
+      <div class="tooltipvalue" id="tooltip${dayIndex}"></div>
+      <div class="value value-add" id="day${dayIndex}Value"></div>
+      <div class="days" id="day${dayIndex}"></div>
+    </div>
+  `;
+    }
+
     // Function to fetch data from local JSON file
     function fetchLocalData() {
       const url = 'data.json'; // Replace with the path to your local JSON file
@@ -175,18 +81,30 @@
           const values = data.map(item => item.amount); // Extracting the 'amount' values from the JSON data
           const days = data.map(item => item.day); // Extracting the 'day' values from the JSON data
 
-          // Bind the values to the 'value-add' elements and update the days
-          const valueAddElements = document.getElementsByClassName('value-add');
-          const daysElements = document.getElementsByClassName('days');
-          const tooltipElements = document.getElementsByClassName('tooltipvalue');
-          for (let i = 0; i < valueAddElements.length; i++) {
+          const infoCard = document.getElementById('infoCard');
+
+          // Clear existing content in infoCard (optional if needed)
+          infoCard.innerHTML = '';
+
+          // Loop through the data and generate the template dynamically
+          for (let i = 0; i < values.length; i++) {
             const value = values[i];
             const day = days[i];
 
-            //valueAddElements[i].textContent = value;
-            tooltipElements[i].textContent = value;
-            valueAddElements[i].style.height = `${value}%`; // Set the width based on the fetched value
-            daysElements[i].textContent = day; // Update the day
+            // Generate the template for each day's data
+            const dayTemplate = generateDayTemplate(i + 1);
+
+            // Append the day template to the infoCard element
+            infoCard.innerHTML += dayTemplate;
+
+            // Update the day data in the template
+            const tooltipElement = document.getElementById(`tooltip${i + 1}`);
+            const valueElement = document.getElementById(`day${i + 1}Value`);
+            const daysElement = document.getElementById(`day${i + 1}`);
+
+            tooltipElement.textContent = value;
+            valueElement.style.height = `${value}%`;
+            daysElement.textContent = day;
           }
         })
         .catch(error => {
@@ -196,6 +114,7 @@
 
     // Call the function to fetch data when the page loads
     fetchLocalData();
+
   </script>
 </body>
 

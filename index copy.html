@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+  <meta name="description" content="Frontend Mentor | Expenses chart component">
+  </meta>
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Expenses chart component</title>
+  <link href="style.css" rel="stylesheet">
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+
+</head>
+
+<body>
+
+
+
+  <main class="card">
+
+    <div class="card-section-top">
+
+      <div class="card-info">
+        <p> My balance</p>
+        <h1 class="text-sm">$921.48</h1>
+
+
+      </div>
+      <div class="logo-img">
+        <img src="./images/logo.svg" alt="Expenses chart logo">
+      </div>
+
+
+
+
+    </div>
+
+
+    <div class="card-content">
+      <h2> Spending - Last 7 days</h2>
+
+
+
+
+      <div class="info-card">
+
+
+        <div>
+
+          <div class="tooltipvalue"></div>
+          <div class="value value-add">
+
+          </div>
+          <div class="days">
+
+          </div>
+
+        </div>
+ 
+        <div>
+          <div class="tooltipvalue"></div>
+          <div class="all-value-tooltip">
+
+          </div>
+          <div class="value-add">
+
+          </div>
+          <div class="days">
+
+          </div>
+
+        </div>
+
+ 
+
+        <div>
+          <div class="tooltipvalue"></div>
+          <div class="value-add bg-blue">
+
+          </div>
+          <div class="days">
+
+          </div>
+
+        </div>
+
+
+
+
+        <div>
+          <div class="tooltipvalue"></div>
+          <div class="value-add">
+
+          </div>
+          <div class="days">
+
+          </div>
+
+        </div>
+
+        <div>
+          <div class="tooltipvalue"></div>
+          <div class="value-add">
+
+          </div>
+          <div class="days">
+
+          </div>
+
+        </div>
+
+        <div>
+          <div class="tooltipvalue"></div>
+          <div class="value-add">
+          </div>
+          <div class="days">
+          </div>
+        </div>
+
+        <div>
+          <div class="tooltipvalue"></div>
+          <div class="value-add">
+          </div>
+          <div class="days">
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+      <div>
+
+      </div>
+  </main>
+
+
+
+
+  <script>
+    // Function to fetch data from local JSON file
+    function fetchLocalData() {
+      const url = 'data.json'; // Replace with the path to your local JSON file
+
+      fetch(url)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          // 'data' contains the parsed JSON content
+          // Assuming data is an array with 7 elements (one for each day)
+          const values = data.map(item => item.amount); // Extracting the 'amount' values from the JSON data
+          const days = data.map(item => item.day); // Extracting the 'day' values from the JSON data
+
+          // Bind the values to the 'value-add' elements and update the days
+          const valueAddElements = document.getElementsByClassName('value-add');
+          const daysElements = document.getElementsByClassName('days');
+          const tooltipElements = document.getElementsByClassName('tooltipvalue');
+          for (let i = 0; i < valueAddElements.length; i++) {
+            const value = values[i];
+            const day = days[i];
+
+            //valueAddElements[i].textContent = value;
+            tooltipElements[i].textContent = value;
+            valueAddElements[i].style.height = `${value}%`; // Set the width based on the fetched value
+            daysElements[i].textContent = day; // Update the day
+          }
+        })
+        .catch(error => {
+          console.error('Fetch Error:', error);
+        });
+    }
+
+    // Call the function to fetch data when the page loads
+    fetchLocalData();
+  </script>
+</body>
+
+</html>
